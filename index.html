@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Para o meu Gonçalito ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 25px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Georgia, serif;
+      color: #68464d;
+      background: #fff9f6;
+    }
+
+    .pagina {
+      width: 100%;
+      max-width: 560px;
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .etiqueta {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      color: #b17a83;
+    }
+
+    h1 {
+      font-size: clamp(32px, 8vw, 46px);
+      font-weight: normal;
+      font-style: italic;
+      margin: 25px 0 15px;
+    }
+
+    .introducao {
+      line-height: 1.9;
+      font-size: 15px;
+      color: #95777b;
+    }
+
+    /* Envelope */
+
+    .envelope {
+      position: relative;
+      width: 250px;
+      height: 165px;
+      margin: 50px auto 28px;
+      cursor: pointer;
+      perspective: 800px;
+    }
+
+    .base {
+      position: absolute;
+      inset: 0;
+      background: #e6a8b0;
+      border-radius: 3px;
+      box-shadow: 0 12px 30px #9e68701c;
+    }
+
+    .papel {
+      position: absolute;
+      width: 86%;
+      height: 88%;
+      left: 7%;
+      top: 5%;
+      background: #fffdfb;
+      border-radius: 3px;
+      transition: transform 0.8s ease;
+      z-index: 1;
+    }
+
+    .aba {
+      position: absolute;
+      inset: 0;
+      background: #f2c8ca;
+      clip-path: polygon(0 0, 100% 0, 50% 65%);
+      transform-origin: top;
+      transition: transform 0.7s ease;
+      z-index: 3;
+    }
+
+    .frente {
+      position: absolute;
+      inset: 0;
+      background: #eab3bb;
+      clip-path: polygon(
+        0 0, 50% 58%, 100% 0,
+        100% 100%, 0 100%
+      );
+      z-index: 2;
+    }
+
+    .selo {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 34px;
+      color: #a34d63;
+      z-index: 4;
+      transition: opacity 0.3s;
+    }
+
+    .envelope.aberto .aba {
+      transform: rotateX(180deg);
+      z-index: 0;
+    }
+
+    .envelope.aberto .papel {
+      transform: translateY(-75px);
+      z-index: 2;
+    }
+
+    .envelope.aberto .selo {
+      opacity: 0;
+    }
+
+    /* Botão */
+
+    button {
+      border: none;
+      border-radius: 30px;
+      background: #b66d7c;
+      color: white;
+      padding: 14px 27px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #9f5667;
+      transform: translateY(-2px);
+    }
+
+    button:focus-visible,
+    .envelope:focus-visible {
+      outline: 3px solid #9f5667;
+      outline-offset: 5px;
+    }
+
+    /* Carta */
+
+    .mensagem {
+      display: none;
+      margin: 38px auto 0;
+      padding: 30px 27px;
+      background: #ffffff;
+      border: 1px solid #f0dedd;
+      border-radius: 5px;
+      text-align: left;
+      line-height: 1.95;
+      font-size: 15px;
+      box-shadow: 0 12px 35px #9e68700c;
+    }
+
+    .mensagem h2 {
+      text-align: center;
+      font-size: 29px;
+      font-weight: normal;
+      font-style: italic;
+      color: #a45d6d;
+      margin: 0 0 25px;
+    }
+
+    .assinatura {
+      text-align: right;
+      font-style: italic;
+      color: #a45d6d;
+      margin-top: 28px;
+    }
+
+    .frase-final {
+      margin-top: 28px;
+      text-align: center;
+      color: #b16d7b;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 40px;
+      color: #b59b9d;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mensagem.visivel {
+      animation: aparecer 0.8s ease;
+    }
+
+    @media (max-width: 400px) {
+      .mensagem {
+        padding: 24px 19px;
+        font-size: 14px;
+      }
+
+      .envelope {
+        width: 225px;
+        height: 150px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="pagina">
+
+    <div class="etiqueta">Uma pequena surpresa ♡</div>
+
+    <h1>Para o meu Gonçalito</h1>
+
+    <p class="introducao">
+      Não é preciso ser um dia especial<br>
+      para te lembrar de que gosto muito de ti.
+      <br><br>
+      Preparei-te uma coisinha. 🤍
+    </p>
+
+    <div
+      class="envelope"
+      id="envelope"
+      role="button"
+      tabindex="0"
+      aria-label="Abrir o envelope"
+      aria-expanded="false"
+    >
+      <div class="base"></div>
+      <div class="papel"></div>
+      <div class="aba"></div>
+      <div class="frente"></div>
+      <div class="selo">♥</div>
+    </div>
+
+    <button id="botaoAbrir">
+      Abrir a minha carta ♡
+    </button>
+
+    <section class="mensagem" id="mensagem" aria-live="polite">
+
+      <h2>Para ti, Gonçalito ❤️</h2>
+
+      <p>Meu Gonçalito,</p>
+
+      <p>
+        Sei que não é nenhum dia especial, mas acho que não
+        precisamos de uma data especial para dizer às pessoas
+        de quem gostamos o quanto elas são importantes para nós.
+        Por isso, decidi fazer-te esta pequena surpresa. 🤍
+      </p>
+
+      <p>
+        Quero que saibas que gosto mesmo muito de ti. Gosto de
+        estar contigo, das nossas conversas, das nossas
+        brincadeiras e até daqueles momentos em que não
+        precisamos de fazer nada de especial para nos
+        divertirmos. São essas coisinhas simples que me fazem
+        gostar cada vez mais de nós.
+      </p>
+
+      <p>
+        Adoro a maneira como consegues tornar os meus dias
+        melhores e como, sem dares conta, consegues pôr-me
+        um sorriso na cara. Às vezes, se calhar, não te digo
+        isto tantas vezes como devia, mas és mesmo muito
+        especial para mim.
+      </p>
+
+      <p>
+        Fiz esta cartinha porque queria dar-te uma coisinha
+        diferente, algo que fosse nosso e que pudesses guardar.
+        Não precisa de ser nada grandioso, porque, no fundo,
+        só queria lembrar-te de que gosto muito de te ter
+        na minha vida. 🥹
+      </p>
+
+      <p>
+        Espero que continuemos a criar muitas memórias juntos,
+        a rir de coisas parvas, a implicar um com o outro
+        e a ter muitos daqueles momentos que só nós entendemos.
+      </p>
+
+      <p>
+        <strong>
+          Gosto muito de ti, meu Gonçalito.
+          Mais do que às vezes consigo explicar. ❤️
+        </strong>
+      </p>
+
+      <p class="assinatura">
+        Um beijinho enorme,<br>
+        a tua menina 🤍
+      </p>
+
+      <div class="frase-final">
+        As coisas simples são mais bonitas quando são contigo. ♡
+      </div>
+
+    </section>
+
+    <footer>
+      FEITO COM AMOR, ESPECIALMENTE PARA TI ♥
+    </footer>
+
+  </main>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    const botao = document.getElementById("botaoAbrir");
+    const mensagem = document.getElementById("mensagem");
+
+    function abrirCarta() {
+      if (mensagem.style.display === "block") {
+        return;
+      }
+
+      envelope.classList.add("aberto");
+      envelope.setAttribute("aria-expanded", "true");
+
+      mensagem.style.display = "block";
+      mensagem.classList.add("visivel");
+
+      botao.textContent = "A minha carta, só para ti ♥";
+      botao.disabled = true;
+
+      setTimeout(() => {
+        mensagem.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 450);
+    }
+
+    botao.addEventListener("click", abrirCarta);
+    envelope.addEventListener("click", abrirCarta);
+
+    envelope.addEventListener("keydown", function(evento) {
+      if (evento.key === "Enter" || evento.key === " ") {
+        evento.preventDefault();
+        abrirCarta();
+      }
+    });
+  </script>
+
+</body>
+</html>
